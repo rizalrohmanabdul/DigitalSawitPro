@@ -1,15 +1,19 @@
 package com.rizal.digitalsawitpro.ui.main
 
 import android.app.ProgressDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Location
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.model.LatLng
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            checkGPSEnable()
+        }
+
+
         if (!arePermissionsGranted()){
             ActivityCompat.requestPermissions(
                 this,
@@ -59,11 +69,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.onSave.observe(this){
-            
+
         }
 
         viewModel.data.observe(this){
             goToDetail(it)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            checkGPSEnable()
         }
     }
 
@@ -142,5 +160,17 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(DETAIL_DISTANCE, data.distance)
         intent.putExtra(DETAIL_DURATION, data.time)
         startActivity(intent)
+    }
+
+    private fun checkGPSEnable() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id
+                ->
+                startActivity(Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            })
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 }
