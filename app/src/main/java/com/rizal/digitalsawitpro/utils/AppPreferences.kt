@@ -14,7 +14,7 @@ class AppPreferences(sharedPreferences: SharedPreferences) {
 
     var googleApi: String
         get() {
-            return pref.getString(KEY_TOKEN, "AIzaSyCa7Id2Gr9BOlDyya4eJsGxRYxrcoLoSEs").orEmpty()
+            return pref.getString(KEY_TOKEN, "AIzaSyCfmboPQ-HClsdXgLH9RT8s2pM5Tjz0m0M").orEmpty()
         }
         set(value) {
             editor.putString(KEY_TOKEN, value)
