@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638228169421",
+    "project_id": "sawittest-cf011",
+    "storage_bucket": "sawittest-cf011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638228169421:android:cd5843d83bf52b58f25f84",
+        "android_client_info": {
+          "package_name": "com.rizal.digitalsawitpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638228169421-3l2u7fj64j9iul32pru4pcitrn49l0j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIR6pnk0fJaCKLcSFwJSDYddIC4g92fI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638228169421-3l2u7fj64j9iul32pru4pcitrn49l0j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
